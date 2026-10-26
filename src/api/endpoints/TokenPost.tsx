@@ -41,7 +41,7 @@ const TokenPost = () => {
       />
 
       <button>Enviar</button>
-      <p style={{ wordBreak: "break-all" }}>{token}</p>
+      <p style={{ wordBreak: "break-all", fontSize: "12px" }}>{token}</p>
     </form>
   );
 };
