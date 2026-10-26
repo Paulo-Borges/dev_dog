@@ -1,7 +1,12 @@
+import Api from "./api/Api";
+import "./App.css";
+
 function App() {
   return (
     <>
-      <h1>Hello, Dev Dog!</h1>
+      <h1>
+        <Api />
+      </h1>
     </>
   );
 }
