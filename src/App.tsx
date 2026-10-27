@@ -9,13 +9,13 @@ import Login from "./component/Login/Login";
 
 function App() {
   return (
-    <div className="justify-center flex flex-col items-center min-h-screen">
+    <div className="justify-center flex flex-col items-center">
       {/* <Api /> */}
       <BrowserRouter>
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login/*" element={<Login />} />
         </Routes>
         <Footer />
       </BrowserRouter>
