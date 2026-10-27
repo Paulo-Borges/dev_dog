@@ -6,7 +6,7 @@ import PhotoGet from "./endpoints/PhotoGet";
 
 const Api: React.FC = () => {
   return (
-    <div>
+    <div className="">
       <h2>USER POST</h2>
       <UserPost />
 

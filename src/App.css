@@ -1,4 +1,14 @@
 input {
   display: block;
+  border: 1px solid #ccc;
   margin-bottom: 1rem;
+}
+button {
+  border: 1px solid #ccc;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+}
+h2 {
+  margin-bottom: 1rem;
+  font-weight: bold;
 }

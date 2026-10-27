@@ -3,11 +3,9 @@ import "./App.css";
 
 function App() {
   return (
-    <>
-      <h1>
-        <Api />
-      </h1>
-    </>
+    <div className="justify-center flex items-center min-h-screen">
+      <Api />
+    </div>
   );
 }
 
