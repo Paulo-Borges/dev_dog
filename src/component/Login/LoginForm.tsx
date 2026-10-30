@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom";
+import React, { useContext } from "react";
 import Input from "../Forms/Input";
 import useForm from "../../Hooks/useForm";
 import { USER_GET, TOKEN_POST } from "../../api";
 import { useEffect } from "react";
+import { UserContext } from "../../UserContext";
 
 const LoginForm = () => {
+  const context = useContext(UserContext);
+  console.log(context);
+
   const username = useForm();
   const password = useForm();
 

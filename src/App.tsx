@@ -6,18 +6,21 @@ import Header from "./component/Header";
 import Footer from "./component/Footer";
 import Home from "./component/Home";
 import Login from "./component/Login/Login";
+import { UserStorage } from "./UserStorage";
 
 function App() {
   return (
     <div className="justify-center flex flex-col items-center">
       {/* <Api /> */}
       <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login/*" element={<Login />} />
-        </Routes>
-        <Footer />
+        <UserStorage>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login/*" element={<Login />} />
+          </Routes>
+          <Footer />
+        </UserStorage>
       </BrowserRouter>
     </div>
   );
