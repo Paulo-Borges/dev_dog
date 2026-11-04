@@ -5,8 +5,9 @@ import Dogs from "../Assets/github.png";
 import { UserContext } from "../UserContext";
 
 const Header = () => {
-  const context = React.useContext(UserContext);
-  console.log(context);
+  const { data: data, userLogout: userLogout } =
+    React.useContext(UserContext) || {};
+  console.log(data);
 
   return (
     <header className="bg-gray-200 shadow p-4 top-0 fixed w-full">
@@ -18,10 +19,15 @@ const Header = () => {
             style={{ width: "30px", height: "30px" }}
           />
         </Link>
-        <Link to="/login">
-          {context?.usuario}
-          Login / Criar
-        </Link>
+
+        {data ? (
+          <>
+            <Link to="/conta">{data.nome}</Link>
+            <button onClick={userLogout}>Logout</button>
+          </>
+        ) : (
+          <Link to="/login"> Login / Criar</Link>
+        )}
       </nav>
     </header>
   );
