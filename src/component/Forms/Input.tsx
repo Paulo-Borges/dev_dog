@@ -4,12 +4,16 @@ const Input = ({
   name,
   value,
   onChange,
+  onBlur,
+  error,
 }: {
   label: string;
   type?: string;
   name?: string;
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: () => void;
+  error?: string | null;
 }) => {
   return (
     <>
@@ -21,8 +25,9 @@ const Input = ({
         id={name}
         value={value}
         onChange={onChange}
+        onBlur={onBlur}
       />
-      <p className="text-red-500 text-xs">Error</p>
+      {error && <p className="text-red-500 text-xs">{error}</p>}
     </>
   );
 };
