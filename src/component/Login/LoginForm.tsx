@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import React, { useContext } from "react";
+import Error from "../Helper/Error";
 import Input from "../Forms/Input";
 import useForm from "../../Hooks/useForm";
 import { UserContext } from "../../UserContext";
@@ -7,8 +8,8 @@ import { UserContext } from "../../UserContext";
 const LoginForm = () => {
   const { userLogin, error, loading } = useContext(UserContext) || {};
 
-  const username = useForm();
-  const password = useForm();
+  const username = useForm("text");
+  const password = useForm("password");
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -29,7 +30,7 @@ const LoginForm = () => {
         ) : (
           <button type="submit">Entrar</button>
         )}
-        {error && <p>{error}</p>}
+        <Error error={error} />
       </form>
       <Link
         to="/login/criar"
