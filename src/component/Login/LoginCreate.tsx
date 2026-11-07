@@ -2,8 +2,8 @@ import { USER_CREATE } from "../../api";
 import useForm from "../../Hooks/useForm";
 
 const LoginCreate: React.FC = () => {
-  const username = useForm("text");
-  const email = useForm("text");
+  const username = useForm("username");
+  const email = useForm("email");
   const password = useForm("password");
 
   async function handleSubmit(event: React.FormEvent) {
