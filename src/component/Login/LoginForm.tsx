@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import React, { useContext } from "react";
-import Error from "../Helper/Error";
+// import Error from "../Helper/Error";
 import Input from "../Forms/Input";
 import useForm from "../../Hooks/useForm";
 import { UserContext } from "../../UserContext";
@@ -8,8 +8,9 @@ import { UserContext } from "../../UserContext";
 const LoginForm = () => {
   const { userLogin, error, loading } = useContext(UserContext) || {};
 
-  const username = useForm("text");
+  const username = useForm("username");
   const password = useForm("password");
+  // console.log(username.validate(), password.validate());
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -30,14 +31,26 @@ const LoginForm = () => {
         ) : (
           <button type="submit">Entrar</button>
         )}
-        <Error error={error} />
+        {/* <Error error={error} /> */}
+        {error && <p>{error}</p>}
       </form>
       <Link
-        to="/login/criar"
-        className="pointer border-none bg-amber-300 hover:bg-amber-500 rounded p-2"
+        to="/login/perdeu"
+        className="pointer border-none bg-amber-300 hover:bg-amber-500 rounded p-2 mr-2"
       >
-        Cadastro
+        Perdeu a senha?
       </Link>
+      <div>
+        <h2>Cadastre-se</h2>
+        <p>Ainda não possui uma conta? Cadastre-se no site!</p>
+
+        <Link
+          to="/login/criar"
+          className="pointer border-none bg-amber-300 hover:bg-amber-500 rounded p-2"
+        >
+          Cadastro
+        </Link>
+      </div>
     </section>
   );
 };

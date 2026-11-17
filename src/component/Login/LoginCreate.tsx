@@ -14,7 +14,7 @@ const LoginCreate: React.FC = () => {
       password: password.value,
     });
     const response = await fetch(url, options);
-    console.log(username.value, email.value, password.value);
+    if (response.ok) console.log(username.value, email.value, password.value);
     console.log(response);
   }
 
