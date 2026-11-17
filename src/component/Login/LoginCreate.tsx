@@ -1,10 +1,21 @@
 import { USER_CREATE } from "../../api";
 import useForm from "../../Hooks/useForm";
+import { UserContext } from "../../../src/UserContext";
+import React from "react";
+import useFetch from "../../Hooks/useFetch";
 
 const LoginCreate: React.FC = () => {
   const username = useForm("username");
   const email = useForm("email");
   const password = useForm("password");
+
+  const context = React.useContext(UserContext);
+  // const { userLogin } = UserStorage(UserContext);
+
+  if (!context) return null;
+  const { userLogin } = context;
+
+  const { loading, error, request } = useFetch();
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -13,9 +24,8 @@ const LoginCreate: React.FC = () => {
       email: email.value,
       password: password.value,
     });
-    const response = await fetch(url, options);
-    if (response.ok) console.log(username.value, email.value, password.value);
-    console.log(response);
+    const { response } = await request(url, options);
+    if (response.ok) userLogin(username.value, password.value);
   }
 
   return (
@@ -28,7 +38,14 @@ const LoginCreate: React.FC = () => {
         <input type="text" id="email" name="email" {...email} />
         <label htmlFor="password">Senha</label>
         <input type="password" id="password" name="password" {...password} />
-        <button type="submit">Cadastrar</button>
+        {loading ? (
+          <button disabled>Cadastrando...</button>
+        ) : (
+          <button disabled={loading} type="submit">
+            Cadastrar
+          </button>
+        )}
+        {error ? <p className="text-red-500 text-xs">{error}</p> : null}
       </form>
     </section>
   );
