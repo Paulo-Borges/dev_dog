@@ -12,10 +12,12 @@ const LoginCreate: React.FC = () => {
   const context = React.useContext(UserContext);
   // const { userLogin } = UserStorage(UserContext);
 
+  // @CLAUDE: subi o useFetch() para ANTES do "if (!context) return null".
+  // Hooks precisam ser chamados sempre, na mesma ordem e antes de qualquer return (regra dos Hooks).
+  const { loading, error, request } = useFetch();
+
   if (!context) return null;
   const { userLogin } = context;
-
-  const { loading, error, request } = useFetch();
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -25,7 +27,8 @@ const LoginCreate: React.FC = () => {
       password: password.value,
     });
     const { response } = await request(url, options);
-    if (response.ok) userLogin(username.value, password.value);
+    // @CLAUDE: "response" pode ser null (ex.: falha de rede), por isso o "response &&"
+    if (response && response.ok) userLogin(username.value, password.value);
   }
 
   return (

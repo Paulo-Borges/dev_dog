@@ -11,7 +11,7 @@ const Login: React.FC = () => {
 
   if (login === true) return <Navigate to="/conta" />;
   return (
-    <div className="pt-20">
+    <div className="">
       <Routes>
         <Route path="/" element={<LoginForm />} />
         <Route path="criar" element={<LoginCreate />} />

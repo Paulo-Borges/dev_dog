@@ -1,11 +1,13 @@
 import React from "react";
-import { UserContext } from "./UserContext"; // Importa do arquivo criado acima
+import { UserContext, type User } from "./UserContext"; // Importa do arquivo criado acima
+// @CLAUDE: passei a importar também o tipo User (usado no useState de "data")
 import { TOKEN_POST, TOKEN_VALIDATE_POST, USER_GET } from "./api";
 import { useNavigate } from "react-router-dom";
 
 export const UserStorage = ({ children }: { children: React.ReactNode }) => {
-  const [data, setData] = React.useState<string | null>(null);
-  const [login, setLogin] = React.useState<boolean>(false);
+  // @CLAUDE: era useState<string | null>; o usuário vindo da API é um objeto, então agora é User | null
+  const [data, setData] = React.useState<User | null>(null);
+  const [login, setLogin] = React.useState<boolean | null>(null);
   const [loading, setLoading] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string | null>(null);
   const navigate = useNavigate();
@@ -30,7 +32,6 @@ export const UserStorage = ({ children }: { children: React.ReactNode }) => {
     const json = await response.json();
     setData(json);
     setLogin(true);
-    console.log(json);
   }
 
   //X-----------------X--------------------X---PRA LOGAR-------------------X-------------X------
@@ -64,11 +65,14 @@ export const UserStorage = ({ children }: { children: React.ReactNode }) => {
           const response = await fetch(url, options);
           if (!response.ok) throw new Error("Token validation failed");
           await getUser(token);
-        } catch (err) {
+        } catch {
+          // @CLAUDE: removi o "(err)" porque ele não era usado (o ESLint acusava no-unused-vars)
           userLogout();
         } finally {
           setLoading(false);
         }
+      } else {
+        setLogin(false);
       }
     }
     autoLogin();
