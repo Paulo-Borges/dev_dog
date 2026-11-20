@@ -7,7 +7,7 @@ import { UserContext } from "../UserContext";
 const Header = () => {
   const { data: data, userLogout: userLogout } =
     React.useContext(UserContext) || {};
-  console.log(data);
+  // @CLAUDE: removi o "console.log(data)" que tinha ficado esquecido (rodava a cada render)
 
   return (
     <header className="bg-gray-200 shadow p-4 top-0 fixed w-full">

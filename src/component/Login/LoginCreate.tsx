@@ -21,6 +21,13 @@ const LoginCreate: React.FC = () => {
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
+    // @CLAUDE: agora valida os campos antes de enviar (igual ao LoginForm).
+    // Chamo os 3 validate() antes do "if" para que todos os erros apareçam de uma vez.
+    const isUsernameValid = username.validate();
+    const isEmailValid = email.validate();
+    const isPasswordValid = password.validate();
+    if (!isUsernameValid || !isEmailValid || !isPasswordValid) return;
+
     const { url, options } = USER_CREATE({
       username: username.value,
       email: email.value,
