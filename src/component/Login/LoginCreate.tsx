@@ -3,6 +3,7 @@ import useForm from "../../Hooks/useForm";
 import { UserContext } from "../../../src/UserContext";
 import React from "react";
 import useFetch from "../../Hooks/useFetch";
+import Input from "../Forms/Input"; // @CLAUDE: import do componente Input usado nos campos
 
 const LoginCreate: React.FC = () => {
   const username = useForm("username");
@@ -42,12 +43,12 @@ const LoginCreate: React.FC = () => {
     <section>
       <h1>Cadastre-se</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Usuario</label>
-        <input type="text" id="username" name="username" {...username} />
-        <label htmlFor="email">Email</label>
-        <input type="text" id="email" name="email" {...email} />
-        <label htmlFor="password">Senha</label>
-        <input type="password" id="password" name="password" {...password} />
+        {/* @CLAUDE: troquei os <label> + <input> pelo componente Input (igual ao LoginForm).
+            Assim as mensagens de erro do useForm aparecem embaixo de cada campo.
+            O email também passou a usar type="email". */}
+        <Input label="Usuario" type="text" name="username" {...username} />
+        <Input label="Email" type="email" name="email" {...email} />
+        <Input label="Senha" type="password" name="password" {...password} />
         {loading ? (
           <button disabled>Cadastrando...</button>
         ) : (
