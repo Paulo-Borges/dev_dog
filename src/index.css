@@ -1,1 +1,8 @@
 @import "tailwindcss";
+
+nav .link-ativo {
+  border-bottom: 2px solid #e11d48;
+}
+nav .link-normal {
+  border-bottom: none;
+}

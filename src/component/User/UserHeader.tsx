@@ -1,7 +1,21 @@
+import React from "react";
+import UserHeaderNav from "./UserHeaderNav";
+import { useLocation } from "react-router-dom";
+
 const UserHeader: React.FC = () => {
+  const { pathname } = useLocation();
+
+  const titles: Record<string, string> = {
+    "/conta/estatisticas": "Estatísticas",
+    "/conta/postar": "Adicionar Fotos",
+  };
+
+  const title = titles[pathname] || "Minhas Fotos";
+
   return (
-    <header>
-      <h1>Title</h1>
+    <header className="flex justify-between items-center gap-44">
+      <h1>{title}</h1>
+      <UserHeaderNav />
     </header>
   );
 };

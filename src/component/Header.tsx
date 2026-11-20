@@ -1,12 +1,11 @@
 import React from "react";
 
 import { Link } from "react-router-dom";
-import Dogs from "../Assets/github.png";
+import logo from "../Assets/iconBorges.svg";
 import { UserContext } from "../UserContext";
 
 const Header = () => {
-  const { data: data, userLogout: userLogout } =
-    React.useContext(UserContext) || {};
+  const { data: data } = React.useContext(UserContext) || {};
   // @CLAUDE: removi o "console.log(data)" que tinha ficado esquecido (rodava a cada render)
 
   return (
@@ -14,7 +13,7 @@ const Header = () => {
       <nav className="flex items-center justify-between h-4">
         <Link to="/">
           <img
-            src={Dogs}
+            src={logo}
             alt="Dogs"
             style={{ width: "30px", height: "30px" }}
           />
@@ -23,7 +22,6 @@ const Header = () => {
         {data ? (
           <>
             <Link to="/conta">{data.nome}</Link>
-            <button onClick={userLogout}>Logout</button>
           </>
         ) : (
           <Link to="/login"> Login / Criar</Link>
