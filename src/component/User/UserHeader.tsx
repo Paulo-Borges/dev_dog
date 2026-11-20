@@ -13,7 +13,7 @@ const UserHeader: React.FC = () => {
   const title = titles[pathname] || "Minhas Fotos";
 
   return (
-    <header className="flex justify-between items-center gap-44">
+    <header className="flex items-center gap-4">
       <h1>{title}</h1>
       <UserHeaderNav />
     </header>
